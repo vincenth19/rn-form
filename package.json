@@ -7,7 +7,14 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "test": "jest --watchAll"
+    "test": "jest --watchAll",
+    "prepare": "husky install",
+    "check-eslint": "npx eslint",
+    "check-prettier": "npx prettier --check",
+    "check-all": "npm run check-eslint && npm run check-prettier",
+    "fix-eslint": "npx eslint --cache --fix",
+    "fix-prettier": "npx prettier --write --ignore-unknown",
+    "fix-all": "npm run fix-eslint && npm run fix-prettier"
   },
   "jest": {
     "preset": "jest-expo"
@@ -46,7 +53,8 @@
     "jest-expo": "~49.0.0",
     "lint-staged": "^13.2.3",
     "react-test-renderer": "18.2.0",
-    "typescript": "^5.1.6"
+    "typescript": "^5.1.6",
+    "husky": "^8.0.0"
   },
   "overrides": {
     "react-refresh": "~0.14.0"
@@ -61,5 +69,9 @@
       "universe/web",
       "universe/native"
     ]
+  },
+  "lint-staged": {
+    "app/**/*.{js,jsx,ts,tsx}": "npm run fix-all",
+    "components/**/*.{js,jsx,ts,tsx,md}": "npm run fix-all"
   }
 }

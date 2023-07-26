@@ -11,6 +11,7 @@ const SimpleForm = () => {
   return (
     <SafeAreaView>
       <Text>Hello Simple Form</Text>
+      <Text>New Text linter</Text>
       <STextInput placeholder="hello" />
     </SafeAreaView>
   );
