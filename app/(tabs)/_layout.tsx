@@ -1,13 +1,16 @@
 import FontAwesome from "@expo/vector-icons/FontAwesome";
-import { Link, Stack, Tabs } from "expo-router";
-import { Pressable, useColorScheme } from "react-native";
+import { Link, Tabs } from "expo-router";
+import { Platform, Pressable, View } from "react-native";
+import { Drawer } from "expo-router/drawer";
 
 import Colors from "@/constants/Colors";
+import BtnSwitchTheme from "@/components/BtnSwitchTheme";
+import { useThemeContext } from "@/contexts/ThemeContext";
 
 /**
  * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
  */
-function TabBarIcon(props: {
+function MenuIcon(props: {
   name: React.ComponentProps<typeof FontAwesome>["name"];
   color: string;
 }) {
@@ -15,42 +18,71 @@ function TabBarIcon(props: {
 }
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
+  const { theme } = useThemeContext();
+  console.log(Platform.OS);
 
-  return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
-      }}
-    >
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: "Tab One",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-          headerRight: () => (
-            <Link href="/modal" asChild>
-              <Pressable>
-                {({ pressed }) => (
-                  <FontAwesome
-                    name="info-circle"
-                    size={25}
-                    color={Colors[colorScheme ?? "light"].text}
-                    style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
-                  />
-                )}
+  if (Platform.OS === "web") {
+    return (
+      <>
+        <Drawer
+          screenOptions={({ navigation }) => ({
+            drawerType: "front",
+            headerLeft: () => (
+              <Pressable onPress={navigation.toggleDrawer}>
+                <FontAwesome
+                  size={28}
+                  name="bars"
+                  color={Colors[theme ?? "light"].text}
+                  style={{ marginLeft: 20 }}
+                />
               </Pressable>
-            </Link>
-          ),
+            ),
+            headerRight: () => <BtnSwitchTheme />,
+          })}
+        >
+          <Drawer.Screen
+            name="index"
+            options={{
+              drawerLabel: "Home",
+              title: "Home",
+              drawerIcon: ({ color }) => <MenuIcon name="home" color={color} />,
+            }}
+          />
+          <Drawer.Screen
+            name="forms"
+            options={{
+              drawerLabel: "Forms",
+              title: "Forms",
+              drawerIcon: ({ color }) => <MenuIcon name="code" color={color} />,
+            }}
+          />
+        </Drawer>
+      </>
+    );
+  } else if (Platform.OS === "android" || Platform.OS === "ios") {
+    return (
+      <Tabs
+        screenOptions={{
+          tabBarActiveTintColor: Colors[theme ?? "light"].tint,
         }}
-      />
-      <Tabs.Screen
-        name="forms"
-        options={{
-          headerShown: false,
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-        }}
-      />
-    </Tabs>
-  );
+      >
+        <Tabs.Screen
+          name="index"
+          options={{
+            title: "Home",
+            tabBarIcon: ({ color }) => <MenuIcon name="home" color={color} />,
+            headerRight: () => <BtnSwitchTheme />,
+          }}
+        />
+        <Tabs.Screen
+          name="forms"
+          options={{
+            headerShown: false,
+            title: "Forms",
+            tabBarIcon: ({ color }) => <MenuIcon name="code" color={color} />,
+          }}
+        />
+      </Tabs>
+    );
+  }
 }

@@ -8,9 +8,7 @@ export default function TabTwoScreen() {
     <View style={styles.container}>
       <Text style={styles.title}>Forms</Text>
       <Link href="/forms/simple">
-        <Text style={{ fontSize: 20, paddingVertical: 20 }}>
-          To Simple Form
-        </Text>
+        <Text style={{ fontSize: 20 }}>To Simple Form</Text>
       </Link>
     </View>
   );
@@ -19,8 +17,7 @@ export default function TabTwoScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
+    padding: 24,
   },
   title: {
     fontSize: 20,
