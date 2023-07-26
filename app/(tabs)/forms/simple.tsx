@@ -1,7 +1,8 @@
 import { useState } from 'react';
+import { SafeAreaView } from 'react-native';
+
 import { STextInput } from '@/components/StyledTextInput';
 import { Text } from '@/components/Themed';
-import { SafeAreaView, TextInput } from 'react-native';
 import Colors from '@/constants/Colors';
 
 const SimpleForm = () => {

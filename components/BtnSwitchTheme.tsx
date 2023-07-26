@@ -1,17 +1,15 @@
+import { FontAwesome } from '@expo/vector-icons';
 import { FC } from 'react';
 import { Pressable } from 'react-native';
 
 import Colors from '@/constants/Colors';
 import { useThemeContext } from '@/contexts/ThemeContext';
-import { FontAwesome } from '@expo/vector-icons';
 
 const BtnSwitchTheme: FC = () => {
   const { theme, setTheme } = useThemeContext();
 
   const toggleTheme = () => {
-    setTheme((prev) =>
-      prev === 'light' ? 'dark' : 'light'
-    );
+    setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
   };
 
   return (
