@@ -1,21 +1,21 @@
-import BtnSwitchTheme from "@/components/BtnSwitchTheme";
-import { Stack } from "expo-router";
-import { Platform } from "react-native";
+import { Stack } from 'expo-router';
+import { Platform } from 'react-native';
+
+import BtnSwitchTheme from '@/components/BtnSwitchTheme';
 
 const FormsLayout = () => {
-  const isMobile = Platform.OS === "android" || Platform.OS === "ios";
+  const isMobile = Platform.OS === 'android' || Platform.OS === 'ios';
   return (
     <Stack
-      screenOptions={{ headerRight: () => isMobile && <BtnSwitchTheme /> }}
-    >
+      screenOptions={{ headerRight: () => isMobile && <BtnSwitchTheme /> }}>
       <Stack.Screen
         name="index"
         options={{
           headerShown: isMobile,
-          headerTitle: "Forms",
+          headerTitle: 'Forms',
         }}
       />
-      <Stack.Screen name="simple" options={{ headerTitle: "Simple Form" }} />
+      <Stack.Screen name="simple" options={{ headerTitle: 'Simple Form' }} />
     </Stack>
   );
 };

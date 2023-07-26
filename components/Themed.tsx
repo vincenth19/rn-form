@@ -7,19 +7,19 @@ import {
   Text as DefaultText,
   View as DefaultView,
   TextInput as DefaultTextInput,
-} from "react-native";
+} from 'react-native';
 
-import Colors from "@/constants/Colors";
-import { useThemeContext } from "@/contexts/ThemeContext";
+import Colors from '@/constants/Colors';
+import { useThemeContext } from '@/contexts/ThemeContext';
 
 type ThemeProps = {
   lightColor?: string;
   darkColor?: string;
 };
 
-export type TextProps = ThemeProps & DefaultText["props"];
-export type ViewProps = ThemeProps & DefaultView["props"];
-export type TextInputProps = ThemeProps & DefaultTextInput["props"];
+export type TextProps = ThemeProps & DefaultText['props'];
+export type ViewProps = ThemeProps & DefaultView['props'];
+export type TextInputProps = ThemeProps & DefaultTextInput['props'];
 
 export function useThemeColor(
   props: { light?: string; dark?: string },
@@ -36,7 +36,7 @@ export function useThemeColor(
 
 export function Text(props: TextProps) {
   const { style, lightColor, darkColor, ...otherProps } = props;
-  const color = useThemeColor({ light: lightColor, dark: darkColor }, "text");
+  const color = useThemeColor({ light: lightColor, dark: darkColor }, 'text');
 
   return <DefaultText style={[{ color }, style]} {...otherProps} />;
 }
@@ -45,7 +45,7 @@ export function View(props: ViewProps) {
   const { style, lightColor, darkColor, ...otherProps } = props;
   const backgroundColor = useThemeColor(
     { light: lightColor, dark: darkColor },
-    "background"
+    'background'
   );
 
   return <DefaultView style={[{ backgroundColor }, style]} {...otherProps} />;
@@ -55,16 +55,16 @@ export function TextInput(props: TextInputProps) {
   const { style, lightColor, darkColor, ...otherProps } = props;
   const backgroundColor = useThemeColor(
     { light: lightColor, dark: lightColor },
-    "inputBackground"
+    'inputBackground'
   );
   const borderColor = useThemeColor(
     { light: lightColor, dark: lightColor },
-    "border"
+    'border'
   );
-  const color = useThemeColor({ light: lightColor, dark: darkColor }, "text");
+  const color = useThemeColor({ light: lightColor, dark: darkColor }, 'text');
   const placeholderTextColor = useThemeColor(
     { light: lightColor, dark: lightColor },
-    "placeholderText"
+    'placeholderText'
   );
 
   return (

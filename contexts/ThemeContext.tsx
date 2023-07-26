@@ -4,10 +4,10 @@ import {
   SetStateAction,
   createContext,
   useContext,
-} from "react";
-import { Appearance } from "react-native";
+} from 'react';
+import { Appearance } from 'react-native';
 
-type ThemeContextType = "light" | "dark";
+type ThemeContextType = 'light' | 'dark';
 interface ThemeContextValues {
   theme: ThemeContextType;
   setTheme: Dispatch<SetStateAction<ThemeContextType>>;
@@ -16,13 +16,9 @@ interface ThemeContextValues {
 const defaultMode = Appearance.getColorScheme();
 
 const ThemeContext = createContext<ThemeContextValues>({
-  theme: defaultMode ?? "light",
+  theme: defaultMode ?? 'light',
   setTheme: () => {},
 });
-
-interface CustomThemeProviderProps {
-  children: ReactNode;
-}
 
 const useThemeContext = () => {
   const { theme, setTheme } = useContext(ThemeContext);

@@ -1,4 +1,4 @@
-import { TextInput, TextInputProps } from "./Themed";
+import { TextInput, TextInputProps } from './Themed';
 
 const BASE_STYLE = {
   borderRadius: 5,
