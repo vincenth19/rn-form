@@ -1,10 +1,4 @@
-import {
-  Dispatch,
-  ReactNode,
-  SetStateAction,
-  createContext,
-  useContext,
-} from 'react';
+import { Dispatch, SetStateAction, createContext, useContext } from 'react';
 import { Appearance } from 'react-native';
 
 type ThemeContextType = 'light' | 'dark';

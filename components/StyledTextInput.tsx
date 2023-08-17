@@ -1,3 +1,5 @@
+import { useTheme } from '@react-navigation/native';
+
 import { TextInput, TextInputProps } from './Themed';
 
 const BASE_STYLE = {
@@ -8,5 +10,7 @@ const BASE_STYLE = {
 };
 
 export function STextInput(props: TextInputProps) {
+  const { colors } = useTheme();
+  console.log('asdf', colors);
   return <TextInput {...props} style={[props.style, BASE_STYLE]} />;
 }
